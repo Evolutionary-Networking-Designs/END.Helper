@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <NoWarn>AC0050;AC0083;AC0154;AC0156;CS0108;CS0436;CS3021</NoWarn>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <Folder Include="Antlr4\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Antlr4 Update="Antlr\query\tsql\TSqlLexer.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.tsql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\tsql\TSqlParser.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.tsql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\plsql\PlSqlLexer.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.plsql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\plsql\PlSqlParser.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.plsql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\sqlite\SQLiteLexer.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.sqlite</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\sqlite\SQLiteParser.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.sqlite</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\mariadb\MariaDBLexer.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.mariadb</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\mariadb\MariaDBParser.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.mariadb</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\postgresql\PostgreSQLLexer.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.postgresql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Update="Antlr\query\postgresql\PostgreSQLParser.g4">
+        <Generator>MSBuild:Compile</Generator>
+        <CustomToolNamespace>END.QueryParser.Antlr.query.postgresql</CustomToolNamespace>
+      </Antlr4>
+      <Antlr4 Remove="Antlr\query\tsql\codegen\**" />
+      <Antlr4 Remove="Antlr\query\sqlite\codegen\**" />
+      <Antlr4 Remove="Antlr4\Query\postgresql\codegen\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Antlr\query\tsql\codegen\**" />
+      <Compile Remove="Antlr\query\sqlite\codegen\**" />
+      <Compile Remove="Antlr4\Query\postgresql\codegen\**" />
+      <Compile Remove="Antlr4\Query\plsql\codegen\**" />
+      <Compile Remove="Antlr4\Query\mariadb\codegen\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Antlr\query\tsql\codegen\**" />
+      <EmbeddedResource Remove="Antlr\query\sqlite\codegen\**" />
+      <EmbeddedResource Remove="Antlr4\Query\postgresql\codegen\**" />
+      <EmbeddedResource Remove="Antlr4\Query\plsql\codegen\**" />
+      <EmbeddedResource Remove="Antlr4\Query\mariadb\codegen\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Antlr\query\tsql\codegen\**" />
+      <None Remove="Antlr\query\sqlite\codegen\**" />
+      <None Remove="Antlr4\Query\postgresql\codegen\**" />
+      <None Remove="Antlr4\Query\plsql\codegen\**" />
+      <None Remove="Antlr4\Query\mariadb\codegen\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\END.Antlr4\END.Antlr4.csproj" />
+    </ItemGroup>
+
+</Project>
