@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ANTLRv4ToolGrammarProperties">
+    <option name="perGrammarGenerationSettings">
+      <list>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr/sql/tsql/TSqlParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr/sql/tsql/gen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr/query/tsql/TSqlParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr/query/tsql/codegen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="Antlr4.Query.tsql" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr/query/sqlite/SQLiteParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr/query/sqlite/codegen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="Antlr4.Query.sqlite" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/postgresql/PostgreSQLParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/postgresql/codegen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="Antlr4.Query.postresql" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/plsql/PlSqlParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/plsql/codegen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="Antlr4.Query.plsql" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/mariadb/MariaDBParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="$PROJECT_DIR$/END.QueryParser/Antlr4/Query/mariadb/codegen" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="utf8" />
+          <option name="pkg" value="Antlr4.Query.mariadb" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+      </list>
+    </option>
+  </component>
+</project>
