@@ -2,22 +2,17 @@
 // ReSharper disable once CheckNamespace
 namespace System;
 
-public class BinaryFile : object
+public class BinaryFile : object, IBinaryFile
 {
     #region "Properties"
-    // ReSharper disable once MemberCanBePrivate.Global
     public byte[]? Data { get; set; }
     public bool IsNull => Data == null;
     public bool IsEmpty => Data == null || Data.Length == 0;
-    
-    // ReSharper disable once MemberCanBePrivate.Global
+    public int Length => Data?.Length ?? 0;
     public Text.Encoding Encoding { get; set; } = Text.Encoding.UTF8;
-
-    // ReSharper disable once MemberCanBePrivate.Global
     public string Value
     {
         get => (Data is null) ? string.Empty : Encoding.GetString(Data);
-        // ReSharper disable once PropertyCanBeMadeInitOnly.Global
         set
         {
             if (!string.IsNullOrEmpty(value))
