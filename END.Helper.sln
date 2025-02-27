@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "END.Helper", "END.Helper\END.Helper.csproj", "{B5C98C8B-3291-4137-A921-4833A7477F10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sign", "Sign", "{8913865B-5811-4592-B91A-1B0767EE2B5D}"
+	ProjectSection(SolutionItems) = preProject
+		sign\END.snk = sign\END.snk
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{C67B0B4D-99E0-4963-BFB9-92622370C0EE}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		LICENSE.md = LICENSE.md
+		.gitignore = .gitignore
+		Makefile = Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Private", "Private", "{BAC4F195-40F9-467A-A0AB-47D35EFFB309}"
+	ProjectSection(SolutionItems) = preProject
+		sign\private\END.snk = sign\private\END.snk
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5C98C8B-3291-4137-A921-4833A7477F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5C98C8B-3291-4137-A921-4833A7477F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5C98C8B-3291-4137-A921-4833A7477F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5C98C8B-3291-4137-A921-4833A7477F10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BAC4F195-40F9-467A-A0AB-47D35EFFB309} = {8913865B-5811-4592-B91A-1B0767EE2B5D}
+	EndGlobalSection
+EndGlobal
