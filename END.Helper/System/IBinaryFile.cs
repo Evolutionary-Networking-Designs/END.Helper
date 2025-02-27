@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace System;
 
 public interface IBinaryFile
@@ -8,5 +9,5 @@ public interface IBinaryFile
     public int Length { get; }
     public Text.Encoding Encoding { get; set; }
     public string Value { get; set; }
-    public abstract string ToString();
+    public string ToString();
 }
