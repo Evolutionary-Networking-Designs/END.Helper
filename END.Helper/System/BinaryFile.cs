@@ -10,7 +10,7 @@ public class BinaryFile : object, IBinaryFile
     public bool IsEmpty => Data == null || Data.Length == 0;
     public int Length => Data?.Length ?? 0;
     public Text.Encoding Encoding { get; set; } = Text.Encoding.UTF8;
-    public string Value
+    public string? Value
     {
         get => (Data is null) ? string.Empty : Encoding.GetString(Data);
         set
@@ -33,8 +33,13 @@ public class BinaryFile : object, IBinaryFile
     }
 
     #endregion
-    
-    public override string ToString() => Value;
-    
-    
+
+    public override string ToString()
+    {
+        if (string.IsNullOrEmpty(Value))
+            return string.Empty;
+        else
+            return Convert.ToString(Value);
+    }
+
 }
