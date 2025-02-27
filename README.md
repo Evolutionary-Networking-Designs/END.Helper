@@ -1,3 +1,5 @@
 # END.Helper
 
-## Utility Functions
+## About
+
+This project is a collection of utility functions.
