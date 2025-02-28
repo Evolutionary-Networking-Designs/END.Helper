@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <AssemblyVersion>0.1.1</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../sign/END.snk</AssemblyOriginatorKeyFile>
     <PublicSign>false</PublicSign>

@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <AssemblyVersion>0.1.0</AssemblyVersion>
         <Nullable>enable</Nullable>
         <NoWarn>AC0050;AC0083;AC0154;AC0156;CS0108;CS0436;CS3021</NoWarn>
     </PropertyGroup>
