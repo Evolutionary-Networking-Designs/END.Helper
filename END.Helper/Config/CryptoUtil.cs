@@ -37,7 +37,7 @@ namespace END.Helper;
         private static string GetCipherKey()
         {
             var appPath = Config.GetAppPath();
-            var envFile = Path.Combine(appPath, "env.json");
+            var envFile = Path.Combine(appPath, "bin", Const.EnvFile);
 
             if (!File.Exists(envFile))
                 _ = new EnvironmentSettings();

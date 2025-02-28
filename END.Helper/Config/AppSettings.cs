@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Diagnostics;
 
 // ReSharper disable once CheckNamespace
@@ -17,17 +16,18 @@ namespace END.Helper;
         public string Environment { get; set; } = string.Empty;
         public string ServiceName { get; set; } = string.Empty;
         public string AppName { get; set; } = string.Empty;
+        public string ShowError { get; set; } = "false";
         public string CipherKey { get; set; } = string.Empty;
 
         public AppSettings()
         {
             var appPath = Config.GetAppPath();
-            var settingsFile = Path.Combine(appPath, "appsettings.json");
+            var settingsFile = Path.Combine(appPath, "bin", "appsettings.json");
             var exists = File.Exists(settingsFile);
 
             if (exists) return;
             if (Helper.HasWriteAccessToFolder(appPath))
-                WriteConfigFile(appPath);
+                WriteConfigFile(settingsFile);
         }
 
         private void WriteConfigFile(string settingsFile)
@@ -38,30 +38,3 @@ namespace END.Helper;
             File.WriteAllText(settingsFile, jsonString, System.Text.Encoding.UTF8);
         }
     }
-
-    public class Logging
-    {
-        public LogLevel LogLevel { get; set; }
-
-        public Logging()
-        {
-            LogLevel = new();
-        }
-    }
-
-    public class LogLevel
-    {
-        [JsonProperty("Microsoft.AspNetCore")]
-        public string MicrosoftAspNetCore { get; set; }
-
-        [JsonProperty("Microsoft.Hosting.Lifetime")]
-        public string MicrosoftHostingLifetime { get; set; }
-
-        public LogLevel()
-        {
-            MicrosoftAspNetCore = "Warning";
-            MicrosoftHostingLifetime = "Information";
-        }
-
-    }
-

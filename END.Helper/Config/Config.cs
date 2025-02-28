@@ -14,7 +14,7 @@ public static class Config
         var baseDir = AppDomain.CurrentDomain.BaseDirectory;
         string appPath;
 
-        if (File.Exists(Path.Combine(baseDir, "web.config")))
+        if (File.Exists(Path.Combine(baseDir, Const.WebConfigFile)))
         {
             var appDomain = HttpRuntime.AppDomainAppVirtualPath;
             if (HttpContext.Current == null) return string.Empty;
@@ -32,10 +32,10 @@ public static class Config
     /// [DebuggerStepThrough]
     /// </summary>
     /// <returns></returns>
-    public static AppSettings LoadConfig()
+    public static AppSettings LoadConfig(bool decode = false)
     {
         var appPath = GetAppPath();
-        var settingsFile = Path.Combine(appPath, "appsettings.json");
+        var settingsFile = Path.Combine(appPath, "bin", Const.AppSettingsFile);
         
         var config = new ConfigurationBuilder()
             .AddJsonFile(settingsFile, true, true)
@@ -46,7 +46,7 @@ public static class Config
         Dictionary<string, string> dataSource = new();
         var env = new EnvironmentSettings();
 
-        var dirty = ValidateConfig(ref appSettings, ref connStr, ref dataSource);
+        var dirty = ValidateConfig(ref appSettings, ref connStr, ref dataSource, decode);
 
         if (dirty)
         {
@@ -61,29 +61,7 @@ public static class Config
 
     public static AppSettings DecodeConfig()
     {
-        var appPath = GetAppPath();
-        var settingsFile = Path.Combine(appPath, "appsettings.json");
-        
-        var config = new ConfigurationBuilder()
-            .AddJsonFile(settingsFile, true, true)
-            .Build();
-
-        var appSettings = config.Get<AppSettings>() ?? new AppSettings();
-        Dictionary<string, string> connStr = new();
-        Dictionary<string, string> dataSource = new();
-        var env = new EnvironmentSettings();
-
-        var dirty = ValidateConfig(ref appSettings, ref connStr, ref dataSource, true);
-
-        if (dirty)
-        {
-            appSettings.ConnectionStrings = connStr;
-            appSettings.DataSource = dataSource;
-            SaveConfig(appSettings);
-        }
-        appSettings.CipherKey = env.CipherKey;
-
-        return appSettings;
+        return LoadConfig(true);
     }
 
     private static bool ValidateConfig(
@@ -166,7 +144,7 @@ public static class Config
     private static void SaveConfig(AppSettings? appSettings)
     {
         var appPath = Config.GetAppPath();
-        var settingsFile = Path.Combine(appPath, "appsettings.json");
+        var settingsFile = Path.Combine(appPath, "bin", Const.AppSettingsFile);
         
         if (File.Exists(settingsFile))
             File.Delete(settingsFile);

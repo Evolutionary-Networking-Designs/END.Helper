@@ -12,7 +12,7 @@ public class EnvironmentSettings
         if (string.IsNullOrEmpty(this.CipherKey))
         {
             var appPath = Config.GetAppPath();
-            var envFile = Path.Combine(appPath, "env.json");
+            var envFile = Path.Combine(appPath, "bin", Const.EnvFile);
             
             if (File.Exists(envFile)) return;
 
