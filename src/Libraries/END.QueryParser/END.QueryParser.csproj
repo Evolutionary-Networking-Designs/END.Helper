@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyVersion>0.1.0</AssemblyVersion>
+        <Nullable>enable</Nullable>
+        <NoWarn>AC0050;AC0083;AC0154;AC0156;CS0108;CS0436;CS3021</NoWarn>
+      <SignAssembly>true</SignAssembly>
+      <AssemblyOriginatorKeyFile>../../../sign/END.snk</AssemblyOriginatorKeyFile>
+      <PublicSign>false</PublicSign>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+      <DelaySign>true</DelaySign>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="../../../LICENSE.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  
+    <ItemGroup>
+        <ProjectReference Include="..\END.Antlr4\END.Antlr4.csproj" />
+    </ItemGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>../../../Output/Debug/</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>../../../Output/Release/</OutputPath>
+    </PropertyGroup>
+
+</Project>
