@@ -6,3 +6,5 @@ Output
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+*.user
