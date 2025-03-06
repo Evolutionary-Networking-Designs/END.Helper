@@ -3,6 +3,8 @@ using System.Web;
 using END.Config;
 using Cfg = END.Config;
 
+// ReSharper disable ConvertIfStatementToReturnStatement
+
 #if WINDOWS7_0_OR_GREATER
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -191,5 +193,48 @@ public static class Helper
             return str;
 
         return listConnStr.ContainsKey(defaultName) ? listConnStr[keyName] : string.Empty;
+    }
+
+    [DebuggerStepThrough]
+    public static string? GetRequest(string param)
+    {
+        var request = HttpContext.Current?.Request;
+        if (request == null) return null;
+        if (request.QueryString[param] != null) return request.QueryString[param];
+        if (request.Form[param] != null) return request.Form[param];
+        if (request.Cookies[param] != null)
+        {
+            var cookie = request.Cookies[param];
+            return Convert.ToString(cookie?.Value);
+        }
+        if (request.ServerVariables[param] != null) return request.ServerVariables[param];
+        return null;
+    }
+
+    [DebuggerStepThrough]
+    public static bool IsLocalUri(string url)
+    {
+        var uri = new Uri(url);
+        var ctx = HttpContext.Current;
+        if (ctx == null) return false;
+        if (uri.Host.Equals(ctx.Request.Url.Host) && uri.Port.Equals(ctx.Request.Url.Port))
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Generate repeated string
+    /// </summary>
+    /// <param name="inString">String to repeat</param>
+    /// <param name="inCount">Number of times to repeat</param>
+    /// <returns></returns>
+    public static string RepeatString(string inString, int inCount)
+    {
+        var result = "";
+        for (var count = 0; count < inCount; count++)
+        {
+            result += inString;
+        }
+        return result;
     }
 }
