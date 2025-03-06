@@ -13,6 +13,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <DelaySign>true</DelaySign>
+    <NoWarn>CA1869</NoWarn>
 </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -57,9 +58,10 @@
 </ItemGroup>
 
 <ItemGroup>
-  <Reference Include="Microsoft.AspNetCore.SystemWebAdapters">
-    <HintPath>..\..\..\..\.nuget\packages\microsoft.aspnetcore.systemwebadapters\2.0.0\lib\netstandard2.0\Microsoft.AspNetCore.SystemWebAdapters.dll</HintPath>
-  </Reference>
+  <ProjectReference Include="..\END.Config\END.Config.csproj" />
+  <ProjectReference Include="..\END.Database\END.Database.csproj" />
+  <ProjectReference Include="..\END.Embedded\END.Embedded.csproj" />
 </ItemGroup>
+    
 
 </Project>
