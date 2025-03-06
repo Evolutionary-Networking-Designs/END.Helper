@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace END.Helper;
+namespace END.Config;
 
 public class LogLevel
 {

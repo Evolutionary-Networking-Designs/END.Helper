@@ -1,16 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
+
 // ReSharper disable InconsistentNaming
 
-// ReSharper disable once CheckNamespace
-namespace END.Helper;
+namespace END.Config.Crypto;
 
     /// <summary>
     /// A tiny wrapper around built-in AES-256 algorithm.

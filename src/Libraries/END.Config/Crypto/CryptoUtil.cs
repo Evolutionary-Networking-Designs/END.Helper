@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
-using System.Web;
 
-// ReSharper disable once CheckNamespace
-namespace END.Helper;
+namespace END.Config.Crypto;
 
     public class CryptoUtil
     {

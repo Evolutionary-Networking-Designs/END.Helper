@@ -1,5 +1,5 @@
-// ReSharper disable once CheckNamespace
-namespace END.Helper;
+// ReSharper disable CheckNamespace
+namespace END.Config;
 
 public static class Const
 {

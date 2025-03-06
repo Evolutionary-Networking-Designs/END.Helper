@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 // ReSharper disable once CheckNamespace
-namespace END.Helper;
+namespace END.Config;
 
     [DebuggerStepThrough]
     public class AppSettings
@@ -12,6 +12,7 @@ namespace END.Helper;
 
         public Dictionary<string, string> DataSource { get; set; } = new();
         public Dictionary<string, string> ConnectionStrings { get; set; } = new();
+        public Dictionary<string, string> Settings { get; set; } = new();
 
         public string Environment { get; set; } = string.Empty;
         public string ServiceName { get; set; } = string.Empty;
@@ -26,15 +27,17 @@ namespace END.Helper;
             var exists = File.Exists(settingsFile);
 
             if (exists) return;
-            if (Helper.HasWriteAccessToFolder(appPath))
+            if (Util.Helper.HasWriteAccessToFolder(appPath))
                 WriteConfigFile(settingsFile);
         }
 
         private void WriteConfigFile(string settingsFile)
         {
-            var options = new JsonSerializerOptions();
-            options.WriteIndented = true;
-            var jsonString = System.Text.Json.JsonSerializer.Serialize(this, options);
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+            var jsonString = JsonSerializer.Serialize(this, options);
             File.WriteAllText(settingsFile, jsonString, System.Text.Encoding.UTF8);
         }
     }

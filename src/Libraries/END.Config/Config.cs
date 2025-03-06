@@ -2,9 +2,18 @@
 using System.Text.Json;
 using System.Diagnostics;
 using System.Web;
+using END.Config.Crypto;
 
+#if WINDOWS7_0_OR_GREATER
+using Conf = System.Configuration;
+using System.Collections.Specialized;
+using END.Config.Util;
+#endif
+
+// ReSharper disable ReplaceSubstringWithRangeIndexer
 // ReSharper disable once CheckNamespace
-namespace END.Helper;
+
+namespace END.Config;
 
 public static class Config
 {
@@ -28,6 +37,80 @@ public static class Config
         return appPath;
     }
 
+    private static void LoadWebConfigSettings(ref AppSettings settings)
+    {
+        var appPath = GetAppPath();
+        var settingsFile = Path.Combine(appPath, Const.WebConfigFile);
+
+        if (!File.Exists(settingsFile)) return;
+        
+        #if WINDOWS7_0_OR_GREATER
+        
+        if (!System.Configuration.ConfigurationManager.AppSettings.HasKeys())
+            return;
+
+        NameValueCollection webSettings = Conf.ConfigurationManager.AppSettings;
+        Conf.ConnectionStringSettingsCollection conSettings = Conf.ConfigurationManager.ConnectionStrings;
+
+        foreach (string key in webSettings)
+        {
+            string? value = webSettings.Get(key);
+            if (value == null) continue;
+            if (!settings.Settings.ContainsKey(key))
+                settings.Settings.Add(key, value);
+        }
+
+        if (settings.Settings.ContainsKey("AppName") && string.IsNullOrEmpty(settings.AppName))
+            settings.AppName = settings.Settings["AppName"];
+
+        var builder = new ConnStrBuilder();
+
+        foreach (Conf.ConnectionStringSettings conn in conSettings)
+        {
+            var provider = conn.ProviderName;
+            var connStr = conn.ConnectionString;
+
+            try
+            {
+                builder.ConnectionString = connStr;
+            } catch
+            {
+                continue;
+            }
+
+            builder.ConnectionString = connStr;
+            var dataSourceName = settings.Environment + "-" + settings.ServiceName;
+
+            if (!settings.DataSource.ContainsKey(dataSourceName))
+            {
+                var dataSource = builder.DataSource;
+                var host = dataSource.Substring(dataSource.IndexOf("HOST", StringComparison.Ordinal));
+                host = host.Substring(0, host.IndexOf(')')).Split('=')[1];
+                var port = dataSource.Substring(dataSource.IndexOf("PORT", StringComparison.Ordinal));
+                port = port.Substring(0, port.IndexOf(')')).Split('=')[1];
+                dataSource = string.Concat(host, ":", port, "/", settings.ServiceName);
+
+                settings.DataSource.Add(dataSourceName, dataSource);
+            }
+
+            builder.DataSource = dataSourceName;
+            connStr = builder.ConnectionString;
+            var key = dataSourceName + "-" + conn.Name.ToUpper();
+
+            settings.ConnectionStrings.TryAdd(key, connStr);
+        }
+        
+        #else
+
+        LoadXmlConfig(ref settings);
+
+        #endif
+    }
+
+    private static void LoadXmlConfig(ref AppSettings settings)
+    {
+    }
+
     /// <summary>
     /// [DebuggerStepThrough]
     /// </summary>
@@ -45,7 +128,9 @@ public static class Config
         Dictionary<string,string> connStr = new();
         Dictionary<string, string> dataSource = new();
         var env = new EnvironmentSettings();
-
+        
+        LoadWebConfigSettings(ref appSettings);
+        
         var dirty = ValidateConfig(ref appSettings, ref connStr, ref dataSource, decode);
 
         if (dirty)
@@ -71,7 +156,7 @@ public static class Config
         bool decode = false
     )
     {
-        var dirty = false;
+        bool dirty;
         
         if (settings.ConnectionStrings.Count == 0)
             return false;

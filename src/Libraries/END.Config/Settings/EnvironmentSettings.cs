@@ -1,7 +1,8 @@
 ﻿using System.Text.Json;
+using END.Config.Crypto;
 
 // ReSharper disable once CheckNamespace
-namespace END.Helper;
+namespace END.Config;
 
 public class EnvironmentSettings
 {
@@ -18,17 +19,14 @@ public class EnvironmentSettings
 
             CipherKey = Aes256Cipher.GenerateNewKey();
 
-            if (Helper.HasWriteAccessToFolder(appPath))
+            if (Util.Helper.HasWriteAccessToFolder(appPath))
                 WriteConfigFile(envFile);
         }
     }
 
     private void WriteConfigFile(string envFile)
     {
-        
-#pragma warning disable CA1869
         var options = new JsonSerializerOptions
-#pragma warning restore CA1869
         {
             WriteIndented = true
         };
